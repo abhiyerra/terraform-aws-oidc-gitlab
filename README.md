@@ -19,8 +19,6 @@ provider "aws" {
   region = var.aws_region
 }
 
-provider "tls" {}
-
 module "aws_oidc_github" {
   source  = "unfunco/oidc-github/aws"
 
@@ -146,5 +144,16 @@ assume role:
 - [Connect to cloud services
 ](https://docs.gitlab.com/ee/ci/cloud_services/index.html#configure-a-conditional-role-with-oidc-claims)
 
+## License
 
+© 2021 [Daniel Morris](https://unfun.co)  
+Made available under the terms of the [Apache License 2.0].
+
+[Apache License 2.0]: LICENSE.md
+[Complete example]: examples/complete
+[Configuring OpenID Connect in Amazon Web Services]: https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services
+[Creating OpenID Connect (OIDC) identity providers]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html
+[Make]: https://www.gnu.org/software/make/
+[Obtaining the thumbprint for an OpenID Connect Identity Provider]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc_verify-thumbprint.html
+[Terraform]: https://www.terraform.io
 

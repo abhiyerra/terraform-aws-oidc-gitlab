@@ -1,3 +1,17 @@
+// Copyright © 2021 Daniel Morris
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at:
+//
+// https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 variable "create_oidc_provider" {
   default     = true
   description = "Flag to enable/disable the creation of the GitHub OIDC provider."
@@ -67,7 +81,7 @@ variable "attach_admin_policy" {
 variable "match_field" {
   type        = string
   default     = "aud"
-  description = "	Issuer, the domain of your GitLab instance. Default value is 'aud' with gilab instance url. Change to 'sub' if you want to use the filter to any project"
+  description = "Issuer, the domain of your GitLab instance. Default value is 'aud' with gilab instance url. Change to 'sub' if you want to use the filter to any project"
 }
 
 variable "match_value" {
