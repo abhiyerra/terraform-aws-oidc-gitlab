@@ -12,8 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-data "aws_partition" "current" {}
-
 data "aws_iam_policy_document" "assume_role" {
   count = var.enabled ? 1 : 0
 
@@ -22,9 +20,9 @@ data "aws_iam_policy_document" "assume_role" {
     effect  = "Allow"
 
     condition {
-      test     = "StringLike"
-      values   = [for repo in var.github_repositories : "repo:${repo}:*"]
-      variable = "token.actions.githubusercontent.com:sub"
+      test     = "StringEquals"
+      values   = var.match_value
+      variable = "${aws_iam_openid_connect_provider.gitlab[0].url}:${var.match_field}"
     }
 
     principals {
@@ -34,10 +32,4 @@ data "aws_iam_policy_document" "assume_role" {
   }
 
   version = "2012-10-17"
-}
-
-data "aws_iam_openid_connect_provider" "github" {
-  count = var.enabled && !var.create_oidc_provider ? 1 : 0
-
-  url = "https://token.actions.githubusercontent.com"
 }
