@@ -20,7 +20,7 @@ provider "aws" {
 }
 
 module "aws_oidc_github" {
-  source  = "unfunco/oidc-github/aws"
+  source  = "../../"
 
   attach_admin_policy     = var.attach_admin_policy
   create_oidc_provider    = var.create_oidc_provider

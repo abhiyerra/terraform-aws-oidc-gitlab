@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "aws_oidc_gitlab" {
-  source = "../"
+  source = "../../"
 
 
   attach_admin_policy     = var.attach_admin_policy
