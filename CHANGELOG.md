@@ -42,6 +42,7 @@ This project adheres to the [semantic versioning] specification.
 * Format Terraform sources ([d447edb](https://github.com/unfunco/terraform-aws-oidc-github/commit/d447edbab405dba2db1cdb0b1ae375aa7317ff09))
 
 ## [0.1.0] – 2021-12-10
+##
 
 * Initial release
 
