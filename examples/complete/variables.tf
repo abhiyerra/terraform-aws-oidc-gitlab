@@ -11,9 +11,9 @@ variable "attach_admin_policy" {
 
 }
 
-variable "aws_managed_policy_arns" {
-  default     = ["arn:aws:iam::aws:policy/AdministratorAccess"]
-  description = "List of AWS managed IAM policy ARNs to attach to the IAM role."
+variable "iam_policy_arns" {
+  default     = ["arn:aws:iam::aws:policy/s3FullAccess"]
+  description = "List of AWS IAM policy ARNs to attach to the IAM role."
   type        = list(any)
 }
 
@@ -31,17 +31,19 @@ variable "audience" {
 
 }
 
-variable "match_field" {
-  type        = string
-  default     = "sub"
-  description = "Issuer, the domain of your GitLab instance. Default 'aud'. Change to 'sub' if you want to use the filter to a specific branch or group"
-}
+variable "gitlab" {
+  default = {
+    "deployer" = {
+      match_field = "sub"
+      match_value = [
+        "project_path:thaunghtikeoo/demo:ref_type:branch:ref:main",
+        "project_path:thaunghtikeoo/oidc-demo:ref_type:branch:ref:main"
+      ]
+      policy_arns = [
 
-variable "match_value" {
-  type        = list(any)
-  default     = ["project_path:tho8111998/gitlab-oidc-aws:ref_type:branch:ref:main"]
-  description = "It should be the your Gitab Instance URl by default. But if you want to use filer to a specific group, branch or tag, use this format project_path:mygroup/myproject:ref_type:branch:ref:main"
-
+      ]
+    }
+  }
 }
 
 variable "aws_region" {

@@ -40,9 +40,9 @@ resource "aws_iam_role_policy_attachment" "admin" {
 }
 
 resource "aws_iam_role_policy_attachment" "custom" {
-  count = var.enabled ? length(var.aws_managed_policy_arns) : 0
+  count = var.enabled ? length(var.iam_policy_arns) : 0
 
-  policy_arn = var.aws_managed_policy_arns[count.index]
+  policy_arn = var.iam_policy_arns[count.index]
   role       = aws_iam_role.gitlab[0].id
 }
 
