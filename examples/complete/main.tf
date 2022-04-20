@@ -3,8 +3,8 @@ provider "aws" {
 }
 
 resource "aws_iam_policy" "deployer" {
-  name        = "github-deployer-policy"
-  description = "Github Deployer"
+  name        = "gitlab-deployer-policy"
+  description = "GitLab Deployer"
 
   policy = <<EOT
 {
