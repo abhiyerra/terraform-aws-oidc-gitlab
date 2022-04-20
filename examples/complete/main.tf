@@ -2,6 +2,34 @@ provider "aws" {
   region = var.aws_region
 }
 
+resource "aws_iam_policy" "deployer" {
+  name        = "github-deployer-policy"
+  description = "Github Deployer"
+
+  policy = <<EOT
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:*"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "eks:DescribeCluster",
+                "eks:ListClusters"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+EOT
+}
+
 module "aws_oidc_gitlab" {
   for_each = var.gitlab
   source = "../../"
