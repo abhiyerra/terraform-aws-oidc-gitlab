@@ -37,7 +37,7 @@ variable "gitlab" {
       iam_role_name = "gitlab_oidc_role"
       audience      = "https://gitlab.com"
       gitlab_url    = "https://gitlab.com"
-      match_field = "sub"
+      match_field   = "sub"
       match_value = [
         "project_path:thaunghtikeoo/demo:ref_type:branch:ref:main",
         "project_path:thaunghtikeoo/oidc-demo:ref_type:branch:ref:main"
