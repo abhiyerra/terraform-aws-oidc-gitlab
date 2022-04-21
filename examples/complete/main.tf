@@ -31,15 +31,17 @@ EOT
 }
 
 module "aws_oidc_gitlab" {
+
   for_each = var.gitlab
   source   = "../../"
 
-  iam_role_name        = "gitlab_action_oidc_aws"
-  attach_admin_policy  = true
+
+  attach_admin_policy  = false
   create_oidc_provider = true
-  iam_policy_arns      = [aws_iam_policy.deployer.arn]
-  gitlab_url           = "https://gitlab.com"
-  audience             = "https://gitlab.com"
+  iam_role_name        = each.value.iam_role_name
+  iam_policy_arns      = each.value.policy_arns
+  gitlab_url           = each.value.gitlab_url
+  audience             = each.value.audience
   match_field          = each.value.match_field
   match_value          = each.value.match_value
 }
