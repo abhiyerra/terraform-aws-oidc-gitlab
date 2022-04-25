@@ -19,17 +19,18 @@ provider "aws" {
   region = var.aws_region
 }
 
-module "aws_oidc_github" {
-  source  = "../../"
+module "aws_oidc_gitlab" {
+  for_each = var.gitlab
+  source   = "../../"
 
-  attach_admin_policy     = var.attach_admin_policy
-  create_oidc_provider    = var.create_oidc_provider
-  aws_managed_policy_arns = var.aws_managed_policy_arns
-  gitlab_url              = var.gitlab_url
-  audience                = var.audience
-  match_field             = var.match_field
-  match_value             = var.match_value
-
+  iam_role_name        = "gitlab_action_oidc_aws"
+  attach_admin_policy  = true
+  create_oidc_provider = true
+  iam_policy_arns      = []
+  gitlab_url           = "https://gitlab.com"
+  audience             = "https://gitlab.com"
+  match_field          = each.value.match_field
+  match_value          = each.value.match_value
 }
 ```
 ## Input Variables

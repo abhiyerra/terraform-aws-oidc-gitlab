@@ -54,7 +54,7 @@ variable "max_session_duration" {
 }
 
 variable "iam_role_name" {
-  default     = "gitlab_action_role"
+  default     = "gitlab_action_odic_aws"
   description = "Name of the IAM role to be created. This will be assumable by GitLab."
   type        = string
 }
@@ -65,9 +65,9 @@ variable "iam_role_path" {
   type        = string
 }
 
-variable "aws_managed_policy_arns" {
+variable "iam_policy_arns" {
   default     = []
-  description = "List of AWS managed IAM policy ARNs to attach to the IAM role."
+  description = "List of AWS IAM policy ARNs to attach to the IAM role."
   type        = list(string)
 }
 
